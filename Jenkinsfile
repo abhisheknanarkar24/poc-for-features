@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/*']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/abhisheknanarkar24/poc-for-features.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main'], [name: 'feature/*']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/abhisheknanarkar24/poc-for-features.git']]])
             }
         }
         stage('SonarQube Analysis') {
