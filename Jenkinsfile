@@ -10,13 +10,13 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/*']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/abhisheknanarkar24/poc-for-features.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main'], [name: 'feature/*']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHub', url: 'https://github.com/abhisheknanarkar24/poc-for-features.git']]])
             }
         }
         stage('SonarQube Analysis') {
             
             steps{
-                withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonar-jenkins') {
+                withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'SonarQubeJenkinsIntegration') {
                     sh "/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner"
                   }  
                   }
