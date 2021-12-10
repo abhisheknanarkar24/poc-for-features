@@ -5,3 +5,4 @@
 4. testing webhook
 5. testing again
 6. cehck webhook
+7. normal project configuration with webhook
