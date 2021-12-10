@@ -7,3 +7,4 @@
 6. cehck webhook
 7. normal project configuration with webhook
 8. mi kay normal manus vatlo ka?
+9. disable lightweight checkout
