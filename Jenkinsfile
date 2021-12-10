@@ -16,7 +16,7 @@ pipeline {
         stage('SonarQube Analysis') {
             
             steps{
-                withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonar-jenkins') {
+                withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'SonarQubeJenkinsIntegration') {
                     sh "/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQube/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner"
                   }  
                   }
