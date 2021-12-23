@@ -1,6 +1,6 @@
 pipeline {
-    agent slave
-    
+    agent {label 'slave'}
+
     environment{
         GIT_REVISION_NUMBER= """${sh(
                 returnStdout: true,
