@@ -44,10 +44,23 @@ pipeline {
                     sh '''/usr/local/bin/aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 294426219574.dkr.ecr.us-east-1.amazonaws.com
                     docker tag $GIT_REVISION_NUMBER 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER
                     docker push 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER'''
+                    
                     }
              
             }
         }
+
+        stage('Anchor Test') {
+            steps {
+                sh '''export ANCHORE_CLI_USER=admin
+                export ANCHORE_CLI_PASS=foobar
+                export ANCHORE_CLI_URL=http://localhost:8228/v1
+                anchore-cli registry list
+                anchore-cli image add 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER
+                anchore-cli image vuln 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER
+                '''
+}
+            }
         stage('Lambda Deployment') {
             steps {
                withAWS(credentials: 'abhishek_aws', endpointUrl: 'https://294426219574.signin.aws.amazon.com/', region: 'us-east-1') {
