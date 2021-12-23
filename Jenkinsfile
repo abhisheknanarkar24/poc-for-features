@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'master'}
 
     environment{
         GIT_REVISION_NUMBER= """${sh(
