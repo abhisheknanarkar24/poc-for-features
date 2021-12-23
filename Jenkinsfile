@@ -56,9 +56,9 @@ pipeline {
                 sh '''export ANCHORE_CLI_USER=admin
                 export ANCHORE_CLI_PASS=foobar
                 export ANCHORE_CLI_URL=http://localhost:8228/v1
-                anchore-cli registry list
-                anchore-cli image add 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER
-                anchore-cli image vuln 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER
+                /home/ec2-user/.local/bin/anchore-cli registry list
+                /home/ec2-user/.local/bin/anchore-cli image add 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER
+                /home/ec2-user/.local/bin/anchore-cli image vuln 294426219574.dkr.ecr.us-east-1.amazonaws.com/app:$GIT_REVISION_NUMBER
                 '''
 }
             }
