@@ -51,7 +51,7 @@ pipeline {
             }
         }
 
-        stage('Anchor Test') {
+/*        stage('Anchor Test') {
             steps {
                 sh '''export ANCHORE_CLI_USER=admin
                 export ANCHORE_CLI_PASS=foobar
@@ -62,6 +62,7 @@ pipeline {
                 '''
 }
             }
+*/
         stage('Lambda Deployment') {
             steps {
                withAWS(credentials: 'abhishek_aws', endpointUrl: 'https://294426219574.signin.aws.amazon.com/', region: 'us-east-1') {
